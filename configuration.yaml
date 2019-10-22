@@ -47,7 +47,11 @@ history:
   include:
     domains:
       - sensor
-
+      - switch
+      - media_player
+      - light
+      - binary_sensor
+      - cover
   exclude:
     entities:
      - sensor.last_boot
@@ -55,7 +59,8 @@ history:
      - sensor.time
 
 # Includes
+device_tracker: !include_dir_merge_list device_tracker
+sensor: !include_dir_merge_list sensor
 group: !include_dir_merge_named group
 automation: !include automations.yaml
 script: !include scripts.yaml
-sensor: !include_dir_merge_list sensor
