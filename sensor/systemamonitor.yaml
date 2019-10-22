@@ -1,0 +1,8 @@
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: disk_use
+      arg: /
+    - type: memory_use
+    - type: last_boot

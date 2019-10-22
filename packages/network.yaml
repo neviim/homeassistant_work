@@ -1,0 +1,5 @@
+group:
+  network:
+    entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_upload

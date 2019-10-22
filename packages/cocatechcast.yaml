@@ -1,0 +1,47 @@
+#-------------------------------------------
+# Podcast feeds
+#
+# @Neviim
+
+#-------------------------------------------
+feedreader:
+    urls:
+      - https://cocatech.com.br/podcast        #CocaTech Podcast Feed
+      - http://feeds.feedburner.com/mmnoar     #MacMagazine Podcast
+
+automation:
+  - alias: Send notification of RSS feed title when updated
+    trigger:
+      platform: event
+      event_type: feedreader
+
+    action:
+      - service: notify.html5
+        data_template:
+          title: "New RSS Item available"
+          message: "New RSS Item - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }} {{trigger.event.data.title}}"
+          data:
+            url: "{{trigger.event.data.link}}"
+
+      - service: persistent_notification.create
+        data_template:
+          title: "{{trigger.event.data.title}}"
+          message: "New RSS item available - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+          notification_id: "update_available"
+
+      # Tudo abaixo desta linha deve ser excluído se for usado como, drop in package.
+      #- service: script.notify_engine
+      #  data_template:
+      #    value1: 'There is a new RSS item available for {{trigger.event.data.title}}.'
+      #    value2: '{{trigger.event.data.link}}'
+      #    who: 'carlo'
+
+      #- service: script.tweet_engine_image
+      #  data_template:
+      #    tweet: '{{trigger.event.data.title}} - {{trigger.event.data.link}}'
+      #    image: >-
+      #      {% set pictures = [
+      #        "/config/www/custom_ui/floorplan/images/branding/BearStoneParty.png",
+      #        "/config/www/custom_ui/floorplan/images/branding/Chalk-Podcast.png"
+      #      ] %}
+      #      {{ pictures|random }}

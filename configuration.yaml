@@ -1,0 +1,61 @@
+default_config:
+#system_health:
+
+homeassistant:
+  name: !secret home
+  latitude: !secret home_longitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  unit_system: metric
+  temperature_unit: C
+  time_zone: America/Sao_Paulo
+  packages: !include_dir_named packages
+
+# map
+map:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# Influxdb database
+influxdb:
+  host: ia.joaopauloii
+  port: 8086
+
+# Sidebar Itens
+panel_iframe:
+  menu_nodered:
+    title: 'Node-Red'
+    url: 'http://localhost:1880'
+    icon: mdi:sitemap
+
+# Front end
+frontend:
+  javascript_version: latest
+
+# Logs
+logbook:
+  exclude:
+    entities:
+      - sensor.last_boot
+      - sensor.time
+      - sensor.date
+
+# Historicos
+history:
+  include:
+    domains:
+      - sensor
+
+  exclude:
+    entities:
+     - sensor.last_boot
+     - sensor.date
+     - sensor.time
+
+# Includes
+group: !include_dir_merge_named group
+automation: !include automations.yaml
+script: !include scripts.yaml
+sensor: !include_dir_merge_list sensor

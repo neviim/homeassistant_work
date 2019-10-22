@@ -1,0 +1,34 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+
+    ::: conda
+
+        $ su root
+        $ conda activate homeassistant
+        $ hass --open-ui
+
+        $ vim /root/.homeassistant
+
+
+    ::: InfluxDB
+
+        $ CREATE DATABASE home_assistant
+        $ DROP DATABASE "home_assistant"
+
+
+    ::: iptables
+
+        $ iptables -I INPUT 1 -i enp1s0f0 -p tcp --dport 8086 -j ACCEPT
+        $ iptables -I INPUT 1 -i enp1s0f0 -p tcp --dport 8088 -j ACCEPT
+
+
+        $ iptables-save > /etc/network/iptables.rules
+
+        $ vim /etc/network/if-pre-up.d/iptables      : #Executado no boot 
+            #!/bin/sh
+            /sbin/iptables-restore < /etc/network/iptables.rules
+
+
+    ::: referencia yaml: 
+    https://github.com/CCOSTAN/Home-AssistantConfig/blob/master/config/configuration.yaml
+
+

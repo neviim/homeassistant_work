@@ -1,0 +1,33 @@
+#-------------------------------------------
+# Alpha Vantage
+#
+# @Neviim
+
+sensor:
+  - platform: alpha_vantage
+    scan_interval: 2400
+    api_key: !secret vantage_api
+    symbols:
+      - name: Tesla
+        currency: USD
+        symbol: TSLA
+      - name: Google
+        currency: USD
+        symbol: GOOGL
+      - name: Amazon
+        currency: USD
+        symbol: AMZN
+
+  - platform: coinmarketcap
+    currency_id: 1027
+  - platform: coinmarketcap
+    currency_id: 1
+#--------------------------
+group:
+  finance:
+    entities:
+      - sensor.tesla
+      - sensor.bitcoin
+      - sensor.ethereum
+      - sensor.google
+      - sensor.amazon
