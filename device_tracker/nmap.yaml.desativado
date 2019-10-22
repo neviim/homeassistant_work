@@ -5,6 +5,6 @@
 #
 - platform: nmap_tracker
   hosts: 10.1.24.1/24
-  track_new_devices: yes
+  track_new_devices: no
   exclude:
     - 10.1.24.1

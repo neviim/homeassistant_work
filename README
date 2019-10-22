@@ -26,3 +26,7 @@
         $ vim /etc/network/if-pre-up.d/iptables      : #Executado no boot 
             #!/bin/sh
             /sbin/iptables-restore < /etc/network/iptables.rules
+
+    ::: Resetar Password
+
+        Delete the auth* files in < config >/.storage
