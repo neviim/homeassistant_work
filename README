@@ -30,3 +30,16 @@
     ::: Resetar Password
 
         Delete the auth* files in < config >/.storage
+
+
+    ::: Mosquitto
+        $ sudo systemctl stop mosquitto.service
+        $ sudo nano /etc/mosquitto/mosquitto.conf
+            password_file /etc/mosquitto/passwd 
+            allow_anonymous false
+
+        $ sudo mosquitto_passwd -c /etc/mosquitto/passwd <user_name>
+        $ sudo systemctl start mosquitto.service
+
+        senha: ialab  
+        paswd: ialab
