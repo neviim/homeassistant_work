@@ -26,9 +26,3 @@
         $ vim /etc/network/if-pre-up.d/iptables      : #Executado no boot 
             #!/bin/sh
             /sbin/iptables-restore < /etc/network/iptables.rules
-
-
-    ::: referencia yaml: 
-    https://github.com/CCOSTAN/Home-AssistantConfig/blob/master/config/configuration.yaml
-
-
