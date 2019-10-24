@@ -1,0 +1,10 @@
+status_sistema:
+  name: "Dados do Sistema"
+  entities:
+    - sensor.time
+    - sensor.date
+    - sensor.last_boot
+    - sensor.disk_use
+    - sensor.memory_use
+    - sensor.disk_use_percent
+    - sensor.speedtest_ping

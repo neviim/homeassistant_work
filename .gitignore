@@ -109,3 +109,4 @@ venv.bak/
 *.storage
 secrets.yaml
 deps/
+hacs/

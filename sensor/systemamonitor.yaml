@@ -6,3 +6,10 @@
       arg: /
     - type: memory_use
     - type: last_boot
+    - type: memory_use_percent
+    - type: processor_use
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: network_in
+    - type: network_out

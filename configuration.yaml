@@ -11,6 +11,19 @@ http:
 # map
 map:
 
+# Organizar a home
+lovelace:
+
+# Trabalha com Video
+ffmpeg:
+
+# hacs-work
+hacs:
+  token: !secret github_hacs-work_token
+  python_script: True
+  options:
+    experimental: True
+
 # Home Assistant
 homeassistant:
   name: !secret home
@@ -22,16 +35,23 @@ homeassistant:
   time_zone: America/Sao_Paulo
   packages: !include_dir_named packages
 
-
-
 # Text to speech
 tts:
   - platform: google_translate
+    service_name: google_say
 
 # Influxdb database
 influxdb:
   host: ia.joaopauloii
   port: 8086
+  include:
+    entities:
+      - sensor.disk_use
+      - sensor.disk_use_percent
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_ping
+      - sensor.last_boot
 
 # Sidebar Itens
 panel_iframe:
@@ -52,12 +72,25 @@ logbook:
       - sensor.time
       - sensor.date
 
+# MQTT
+mqtt:
+  broker: !secret home_broker_ip
+  port: !secret home_broker_port
+  username: !secret home_broker_user
+  password: !secret home_broker_pass
 
+# TV Bravia
+#media_player:
+#  - platform: braviatv
+#    host: !secret work_bravia_tv_ip
+#    name: Bravia TV Work
 
 
 # Includes
-device_tracker: !include_dir_merge_list device_tracker
-sensor: !include_dir_merge_list sensor
-group: !include_dir_merge_named group
+device_tracker: !include_dir_merge_list device_tracker/
+switch: !include_dir_merge_list switches/
+sensor: !include_dir_merge_list sensor/
+group: !include_dir_merge_list group/
 automation: !include automations.yaml
 script: !include scripts.yaml
+
